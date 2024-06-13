@@ -1,6 +1,6 @@
 {
   "name": "minitel-mosaic",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A mosaic adaptor for immjs's minitel npm ecoystem",
   "main": "dist/index.js",
   "scripts": {
