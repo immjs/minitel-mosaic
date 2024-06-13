@@ -52,7 +52,8 @@ export class Image extends MinitelObject<ImageAttributes> {
       let currLine = new RichCharGrid();
       for (let x = 0; x < img[0].length; x += 2) {
         const { pixelsAsSg, bgFg: [bg, fg] } = fgBgPairs[weAt];
-        const richChar = new RichChar(sgToAscii(pixelsAsSg), { charset: 1, fg: lookupMap[fg.join()], bg: lookupMap[bg.join()] });
+        const chr = sgToAscii(pixelsAsSg);
+        const richChar = new RichChar(chr, { charset: chr === '\x32' ? 0 : 1, fg: lookupMap[fg.join()], bg: lookupMap[bg.join()] });
         currLine.mergeX(new RichCharGrid([[richChar]]), 'end');
         weAt += 1;
       }

@@ -41,7 +41,8 @@ class Image extends minitelobject_1.MinitelObject {
             let currLine = new richchargrid_1.RichCharGrid();
             for (let x = 0; x < img[0].length; x += 2) {
                 const { pixelsAsSg, bgFg: [bg, fg] } = fgBgPairs[weAt];
-                const richChar = new richchar_1.RichChar((0, sg_to_ascii_1.sgToAscii)(pixelsAsSg), { charset: 1, fg: lookupMap[fg.join()], bg: lookupMap[bg.join()] });
+                const chr = (0, sg_to_ascii_1.sgToAscii)(pixelsAsSg);
+                const richChar = new richchar_1.RichChar(chr, { charset: chr === '\x32' ? 0 : 1, fg: lookupMap[fg.join()], bg: lookupMap[bg.join()] });
                 currLine.mergeX(new richchargrid_1.RichCharGrid([[richChar]]), 'end');
                 weAt += 1;
             }
