@@ -1,0 +1,29 @@
+{
+  "name": "minitel-mosaic",
+  "version": "1.0.1",
+  "description": "A mosaic adaptor for immjs's minitel npm ecoystem",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/immjs/minitel-mosaic.git"
+  },
+  "author": "immjs",
+  "license": "Hippocratic-2.1",
+  "bugs": {
+    "url": "https://github.com/immjs/minitel-mosaic/issues"
+  },
+  "homepage": "https://github.com/immjs/minitel-mosaic#readme",
+  "devDependencies": {
+    "@types/ws": "^8.5.10",
+    "typescript": "^5.4.5",
+    "ws": "^8.17.0"
+  },
+  "dependencies": {
+    "minitel-standalone": "^1.8.2",
+    "sharp": "^0.33.4"
+  }
+}
