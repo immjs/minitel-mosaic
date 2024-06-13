@@ -6,7 +6,7 @@ import { ColorTriplet } from "../types";
 import { sgToAscii } from "../utils/sg_to_ascii";
 import { RichChar } from "minitel-standalone/dist/richchar";
 
-interface ImageAttributes extends MinitelObjectAttributes {
+export interface ImageAttributes extends MinitelObjectAttributes {
   imageData: number[][][] | null;
 }
 
