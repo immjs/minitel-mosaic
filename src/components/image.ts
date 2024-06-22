@@ -17,7 +17,7 @@ export class Image extends MinitelObject<ImageAttributes> {
   };
   defaultAttributes: ImageAttributes = Image.defaultAttributes;
   getDimensions(attributes: ImageAttributes, inheritMe: Partial<ImageAttributes>) {
-    return { width: Math.ceil((attributes.imageData?.[0].length || 0) / 3), height: Math.ceil((attributes.imageData?.length || 0) / 2) };
+    return { width: Math.ceil((attributes.imageData?.[0].length || 0) / 2), height: Math.ceil((attributes.imageData?.length || 0) / 3) };
   }
   render(attributes: ImageAttributes, inheritMe: Partial<MinitelObjectAttributes>) {
     const img = attributes.imageData;
