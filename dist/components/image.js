@@ -12,7 +12,7 @@ class Image extends minitelobject_1.MinitelObject {
         this.defaultAttributes = Image.defaultAttributes;
     }
     getDimensions(attributes, inheritMe) {
-        return { width: attributes.imageData?.[0].length || -1, height: attributes.imageData?.length || -1 };
+        return { width: Math.ceil((attributes.imageData?.[0].length || 0) / 3), height: Math.ceil((attributes.imageData?.length || 0) / 2) };
     }
     render(attributes, inheritMe) {
         const img = attributes.imageData;
