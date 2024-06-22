@@ -33,7 +33,7 @@ export class Image extends MinitelObject<ImageAttributes> {
           const newX = x + (i % 2);
           const newY = y + Math.floor(i / 2);
 
-          cluster.push(img[Math.min(newY, img.length - 1)][Math.min(newX, img[0].length)] as ColorTriplet);
+          cluster.push(img[Math.min(newY, img.length - 1)][Math.min(newX, img[0].length - 1)] as ColorTriplet);
         }
         clusters.push(cluster);
       }
