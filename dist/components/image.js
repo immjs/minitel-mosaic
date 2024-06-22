@@ -11,6 +11,9 @@ class Image extends minitelobject_1.MinitelObject {
         super(...arguments);
         this.defaultAttributes = Image.defaultAttributes;
     }
+    getDimensions(attributes, inheritMe) {
+        return { width: attributes.imageData?.[0].length || -1, height: attributes.imageData?.length || -1 };
+    }
     render(attributes, inheritMe) {
         const img = attributes.imageData;
         if (img == null) {
@@ -24,7 +27,7 @@ class Image extends minitelobject_1.MinitelObject {
                 for (let i = 0; i < 6; i += 1) {
                     const newX = x + (i % 2);
                     const newY = y + Math.floor(i / 2);
-                    cluster.push(img[newY][newX]);
+                    cluster.push(img[Math.min(newY, img.length - 1)][Math.min(newX, img[0].length)]);
                 }
                 clusters.push(cluster);
             }
