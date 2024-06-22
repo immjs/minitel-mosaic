@@ -23,7 +23,7 @@
     "ws": "^8.17.0"
   },
   "dependencies": {
-    "minitel-standalone": "^1.9.3",
+    "minitel-standalone": "^1.9.4",
     "sharp": "^0.33.4"
   }
 }
