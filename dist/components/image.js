@@ -1,12 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Image = void 0;
-const minitelobject_1 = require("minitel-standalone/dist/abstract/minitelobject");
-const richchargrid_1 = require("minitel-standalone/dist/richchargrid");
-const get_fg_bg_1 = require("../utils/get_fg_bg");
-const sg_to_ascii_1 = require("../utils/sg_to_ascii");
-const richchar_1 = require("minitel-standalone/dist/richchar");
-class Image extends minitelobject_1.MinitelObject {
+import { MinitelObject } from "minitel-standalone/dist/abstract/minitelobject.js";
+import { RichCharGrid } from "minitel-standalone/dist/richchargrid.js";
+import { getFgBg } from "../utils/get_fg_bg.js";
+import { sgToAscii } from "../utils/sg_to_ascii.js";
+import { RichChar } from "minitel-standalone/dist/richchar.js";
+export class Image extends MinitelObject {
     constructor() {
         super(...arguments);
         this.defaultAttributes = Image.defaultAttributes;
@@ -17,7 +14,7 @@ class Image extends minitelobject_1.MinitelObject {
     render(attributes, inheritMe) {
         const img = attributes.imageData;
         if (img == null) {
-            return new richchargrid_1.RichCharGrid();
+            return new RichCharGrid();
         }
         const clusters = [];
         // Step 1. Cluster
@@ -33,20 +30,20 @@ class Image extends minitelobject_1.MinitelObject {
             }
         }
         // Step 2. Collect the best fg/bg pairs
-        const fgBgPairs = clusters.map((cluster) => (0, get_fg_bg_1.getFgBg)(this.minitel.colors, cluster));
+        const fgBgPairs = clusters.map((cluster) => getFgBg(this.minitel.colors, cluster));
         const lookupMap = {};
         for (let idx in this.minitel.colors) {
             lookupMap[this.minitel.colors[idx].join()] = +idx;
         }
-        const result = new richchargrid_1.RichCharGrid();
+        const result = new RichCharGrid();
         let weAt = 0;
         for (let y = 0; y < img.length; y += 3) {
-            let currLine = new richchargrid_1.RichCharGrid();
+            let currLine = new RichCharGrid();
             for (let x = 0; x < img[0].length; x += 2) {
                 const { pixelsAsSg, bgFg: [bg, fg] } = fgBgPairs[weAt];
-                const chr = (0, sg_to_ascii_1.sgToAscii)(pixelsAsSg);
-                const richChar = new richchar_1.RichChar(chr, { charset: 1, fg: lookupMap[fg.join()], bg: lookupMap[bg.join()] });
-                currLine.mergeX(new richchargrid_1.RichCharGrid([[richChar]]), 'end');
+                const chr = sgToAscii(pixelsAsSg);
+                const richChar = new RichChar(chr, { charset: 1, fg: lookupMap[fg.join()], bg: lookupMap[bg.join()] });
+                currLine.mergeX(new RichCharGrid([[richChar]]), 'end');
                 weAt += 1;
             }
             result.mergeY(currLine, 'end');
@@ -54,8 +51,7 @@ class Image extends minitelobject_1.MinitelObject {
         return result;
     }
 }
-exports.Image = Image;
 Image.defaultAttributes = {
-    ...(minitelobject_1.MinitelObject.defaultAttributes),
+    ...(MinitelObject.defaultAttributes),
     imageData: null,
 };

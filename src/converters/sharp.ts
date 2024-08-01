@@ -1,5 +1,5 @@
 import type { Sharp } from "sharp";
-import { ColorTriplet } from "../types";
+import { ColorTriplet } from "../types.js";
 
 export async function sharpHandler(sharpInstance: Sharp): Promise<ColorTriplet[][]> {
   const { data, info } = await sharpInstance

@@ -1,5 +1,5 @@
-import { ColorTriplet } from "../types";
-import { computeEuclidianDistance } from "./utils";
+import { ColorTriplet } from "../types.js";
+import { computeEuclidianDistance } from "./utils.js";
 
 export function getFgBg(colors: ColorTriplet[], pixels: ColorTriplet[]) {
   let leastSum = Infinity;

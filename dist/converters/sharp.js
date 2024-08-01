@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.sharpHandler = void 0;
-async function sharpHandler(sharpInstance) {
+export async function sharpHandler(sharpInstance) {
     const { data, info } = await sharpInstance
         .raw()
         .ensureAlpha()
@@ -21,4 +18,3 @@ async function sharpHandler(sharpInstance) {
     }
     return rgbArray;
 }
-exports.sharpHandler = sharpHandler;

@@ -2,9 +2,8 @@ import { WebSocket, WebSocketServer, createWebSocketStream } from 'ws';
 
 import { Duplex, DuplexOptions } from 'stream';
 import { Minitel, Paragraph, Scrollable } from 'minitel-standalone';
-import { Image } from '../components/image';
-import { defaultImg } from '../converters/default';
-import { sharpHandler } from '../converters/sharp';
+import { Image } from '../components/image.js';
+import { sharpHandler } from '../converters/sharp.js';
 import sharp from 'sharp';
 
 const wss = new WebSocketServer({ port: 8080 });

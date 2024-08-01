@@ -1,6 +1,6 @@
-import { MinitelObject } from "minitel-standalone/dist/abstract/minitelobject";
-import { RichCharGrid } from "minitel-standalone/dist/richchargrid";
-import { MinitelObjectAttributes } from "minitel-standalone/dist/types";
+import { MinitelObject } from "minitel-standalone/dist/abstract/minitelobject.js";
+import { RichCharGrid } from "minitel-standalone/dist/richchargrid.js";
+import { MinitelObjectAttributes } from "minitel-standalone/dist/types.js";
 export interface ImageAttributes extends MinitelObjectAttributes {
     imageData: number[][][] | null;
 }

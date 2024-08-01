@@ -1,6 +1,6 @@
-import { Image, ImageAttributes } from './components/image';
-import { anyHandler } from './converters/any';
-import { sharpHandler } from './converters/sharp';
-import { defaultImg } from './converters/default';
+import { Image, ImageAttributes } from './components/image.js';
+import { anyHandler } from './converters/any.js';
+import { sharpHandler } from './converters/sharp.js';
+import { defaultImg } from './converters/default.js';
 export { Image, anyHandler, sharpHandler, defaultImg };
 export { ImageAttributes };

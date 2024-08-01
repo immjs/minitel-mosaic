@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.sgToAscii = void 0;
-function sgToAscii(sg) {
+export function sgToAscii(sg) {
     let result = 32;
     result += +sg[0];
     result += 2 * (+sg[1]);
@@ -14,4 +11,3 @@ function sgToAscii(sg) {
     }
     return String.fromCharCode(result);
 }
-exports.sgToAscii = sgToAscii;

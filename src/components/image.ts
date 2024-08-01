@@ -1,10 +1,10 @@
-import { MinitelObject } from "minitel-standalone/dist/abstract/minitelobject";
-import { RichCharGrid } from "minitel-standalone/dist/richchargrid";
-import { MinitelObjectAttributes } from "minitel-standalone/dist/types";
-import { getFgBg } from "../utils/get_fg_bg";
-import { ColorTriplet } from "../types";
-import { sgToAscii } from "../utils/sg_to_ascii";
-import { RichChar } from "minitel-standalone/dist/richchar";
+import { MinitelObject } from "minitel-standalone/dist/abstract/minitelobject.js";
+import { RichCharGrid } from "minitel-standalone/dist/richchargrid.js";
+import { MinitelObjectAttributes } from "minitel-standalone/dist/types.js";
+import { getFgBg } from "../utils/get_fg_bg.js";
+import { ColorTriplet } from "../types.js";
+import { sgToAscii } from "../utils/sg_to_ascii.js";
+import { RichChar } from "minitel-standalone/dist/richchar.js";
 
 export interface ImageAttributes extends MinitelObjectAttributes {
   imageData: number[][][] | null;

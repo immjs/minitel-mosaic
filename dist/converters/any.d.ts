@@ -1,3 +1,3 @@
-/// <reference types="node" />
-import { ColorTriplet } from "../types";
+/// <reference types="node" resolution-mode="require"/>
+import { ColorTriplet } from "../types.js";
 export declare function anyHandler(inputImage: Buffer): Promise<ColorTriplet[][]>;

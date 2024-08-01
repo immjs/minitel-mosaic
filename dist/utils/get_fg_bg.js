@@ -1,8 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getFgBg = void 0;
-const utils_1 = require("./utils");
-function getFgBg(colors, pixels) {
+import { computeEuclidianDistance } from "./utils.js";
+export function getFgBg(colors, pixels) {
     let leastSum = Infinity;
     let mostEfficient = null;
     let actualConversionTable = null;
@@ -12,7 +9,7 @@ function getFgBg(colors, pixels) {
             let sum = 0;
             const conversionTable = {};
             for (let pixel of pixels) {
-                const pixelCloseness = bf.map((v) => (0, utils_1.computeEuclidianDistance)(pixel, v));
+                const pixelCloseness = bf.map((v) => computeEuclidianDistance(pixel, v));
                 const closest = Math.min(...pixelCloseness);
                 sum += closest;
                 const fgOrBg = pixelCloseness.indexOf(closest);
@@ -27,4 +24,3 @@ function getFgBg(colors, pixels) {
     }
     return { bgFg: mostEfficient, pixelsAsSg: pixels.map((v) => actualConversionTable[v.join()]) };
 }
-exports.getFgBg = getFgBg;

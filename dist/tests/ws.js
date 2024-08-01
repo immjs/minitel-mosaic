@@ -1,16 +1,11 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const ws_1 = require("ws");
-const stream_1 = require("stream");
-const minitel_standalone_1 = require("minitel-standalone");
-const image_1 = require("../components/image");
-const sharp_1 = require("../converters/sharp");
-const sharp_2 = __importDefault(require("sharp"));
-const wss = new ws_1.WebSocketServer({ port: 8080 });
-class DuplexBridge extends stream_1.Duplex {
+import { WebSocketServer, createWebSocketStream } from 'ws';
+import { Duplex } from 'stream';
+import { Minitel } from 'minitel-standalone';
+import { Image } from '../components/image.js';
+import { sharpHandler } from '../converters/sharp.js';
+import sharp from 'sharp';
+const wss = new WebSocketServer({ port: 8080 });
+class DuplexBridge extends Duplex {
     constructor(destinationStream, ws, opts) {
         super(opts);
         this.ws = ws;
@@ -30,10 +25,10 @@ class DuplexBridge extends stream_1.Duplex {
     }
 }
 wss.on('connection', async function connection(ws) {
-    const bridge = new DuplexBridge((0, ws_1.createWebSocketStream)(ws, { decodeStrings: false }), ws, { decodeStrings: false });
-    const minitel = new minitel_standalone_1.Minitel(bridge, { statusBar: true });
+    const bridge = new DuplexBridge(createWebSocketStream(ws, { decodeStrings: false }), ws, { decodeStrings: false });
+    const minitel = new Minitel(bridge, { statusBar: true });
     await minitel.readyAsync();
-    minitel.appendChild(new image_1.Image([], { imageData: await (0, sharp_1.sharpHandler)((0, sharp_2.default)('./test.png').resize(80, 75)) }, minitel));
+    minitel.appendChild(new Image([], { imageData: await sharpHandler(sharp('./test.png').resize(80, 75)) }, minitel));
     // minitel.appendChild(new Image([], { imageData: defaultImg() }, minitel));
     minitel.on('frame', () => console.log('render done!'));
     minitel.queueImmediateRenderToStream();
