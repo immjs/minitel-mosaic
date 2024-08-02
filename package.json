@@ -24,6 +24,6 @@
     "ws": "^8.17.0"
   },
   "dependencies": {
-    "minitel-standalone": "^1.9.5"
+    "minitel-standalone": "^1.9.6"
   }
 }
