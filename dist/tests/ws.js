@@ -2,6 +2,7 @@ import { WebSocketServer, createWebSocketStream } from 'ws';
 import { Duplex } from 'stream';
 import { Minitel } from 'minitel-standalone';
 import { Image } from '../components/image.js';
+// import { sharpHandler } from '../converters/sharp.js';
 import { defaultImg } from '../converters/default.js';
 const wss = new WebSocketServer({ port: 8080 });
 class DuplexBridge extends Duplex {
