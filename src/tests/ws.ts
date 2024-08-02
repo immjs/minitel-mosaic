@@ -1,10 +1,11 @@
 import { WebSocket, WebSocketServer, createWebSocketStream } from 'ws';
 
 import { Duplex, DuplexOptions } from 'stream';
-import { Minitel, Paragraph, Scrollable } from 'minitel-standalone';
+import { Minitel } from 'minitel-standalone';
 import { Image } from '../components/image.js';
-import { sharpHandler } from '../converters/sharp.js';
+// import { sharpHandler } from '../converters/sharp.js';
 import sharp from 'sharp';
+import { defaultImg } from '../converters/default.js';
 
 const wss = new WebSocketServer({ port: 8080 });
 
@@ -36,8 +37,8 @@ wss.on('connection', async function connection(ws) {
 
     await minitel.readyAsync()
 
-    minitel.appendChild(new Image([], { imageData: await sharpHandler(sharp('./test.png').resize(80, 75)) }, minitel));
-    // minitel.appendChild(new Image([], { imageData: defaultImg() }, minitel));
+    // minitel.appendChild(new Image([], { imageData: await sharpHandler(sharp('./test.png').resize(80, 75)) }, minitel));
+    minitel.appendChild(new Image([], { imageData: defaultImg() }, minitel));
 
     minitel.on('frame', () => console.log('render done!'));
     minitel.queueImmediateRenderToStream();
