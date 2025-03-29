@@ -2,12 +2,10 @@ import type { Sharp } from "sharp";
 import { ColorTriplet } from "../types.js";
 import { ReactNode, useContext, useState } from "react";
 import sharp from "sharp";
-import { RichCharGrid } from "minitel-standalone/dist/richchargrid.js";
-import { DefaultImg } from "./default.js";
 import { toRichCharGrid } from "../utils/to_richchargrid.js";
 import { minitelContext } from "minitel-react";
 
-export async function SharpImg({ path, defaultComponent: DefaultComponent }: { path: string, defaultComponent: () => ReactNode }) {
+export async function SharpImg({ path, defaultComponent: DefaultComponent }: { path: string | Buffer, defaultComponent: () => ReactNode }) {
   const [result, setResult] = useState<ColorTriplet[][] | null>(null);
   const minitel = useContext(minitelContext);
 
