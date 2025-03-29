@@ -1,9 +1,6 @@
-import { Image, ImageAttributes } from './components/image.js';
+import "minitel-react";
 
-// import { anyHandler } from './converters/any.js';
-// import { sharpHandler } from './converters/sharp.js';
-import { defaultImg } from './converters/default.js';
+import { SharpImg } from './converters/sharp.js';
+import { DefaultImg } from './converters/default.js';
 
-export { Image, defaultImg };
-
-export { ImageAttributes };
+export { SharpImg, DefaultImg };

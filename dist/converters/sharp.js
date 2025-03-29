@@ -1,3 +1,21 @@
+import { jsx as _jsx } from "react/jsx-runtime";
+import { useContext, useState } from "react";
+import sharp from "sharp";
+import { toRichCharGrid } from "../utils/to_richchargrid.js";
+import { minitelContext } from "minitel-react";
+export async function SharpImg({ path, defaultComponent: DefaultComponent }) {
+    const [result, setResult] = useState(null);
+    const minitel = useContext(minitelContext);
+    function resize([height, width]) {
+        (async function () {
+            const intermediaryStep1 = await sharpHandler(sharp(path).resize(width, height));
+            setResult(intermediaryStep1);
+        })();
+    }
+    return result
+        ? _jsx("mt-disp", { onResize: resize, grid: toRichCharGrid(result, minitel.colors) })
+        : _jsx("mt-cont", { onResize: resize, children: _jsx(DefaultComponent, {}) });
+}
 export async function sharpHandler(sharpInstance) {
     const { data, info } = await sharpInstance
         .raw()
