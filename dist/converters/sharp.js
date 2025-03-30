@@ -3,18 +3,19 @@ import { useContext, useState } from "react";
 import sharp from "sharp";
 import { toRichCharGrid } from "../utils/to_richchargrid.js";
 import { minitelContext } from "minitel-react";
-export async function SharpImg({ path, defaultComponent: DefaultComponent, ...props }) {
+export function SharpImg({ path, defaultComponent: DefaultComponent, ...props }) {
     const [result, setResult] = useState(null);
     const minitel = useContext(minitelContext);
-    function resize([height, width]) {
+    function resize([height, width], prev) {
         (async function () {
             const intermediaryStep1 = await sharpHandler(sharp(path).resize(width, height));
             setResult(intermediaryStep1);
         })();
+        props.onResize?.([height, width], prev);
     }
     return result
-        ? _jsx("mt-disp", { onResize: resize, grid: toRichCharGrid(result, minitel.colors) })
-        : _jsx("mt-cont", { onResize: resize, children: _jsx(DefaultComponent, {}) });
+        ? _jsx("mt-disp", { ...props, onResize: resize, grid: toRichCharGrid(result, minitel.colors) })
+        : _jsx("mt-cont", { ...props, onResize: resize, children: _jsx(DefaultComponent, {}) });
 }
 export async function sharpHandler(sharpInstance) {
     const { data, info } = await sharpInstance

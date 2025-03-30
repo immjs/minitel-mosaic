@@ -6,20 +6,21 @@ import { toRichCharGrid } from "../utils/to_richchargrid.js";
 import { minitelContext } from "minitel-react";
 import { MinitelObjectAttributes } from "minitel-standalone/dist/types.js";
 
-export async function SharpImg({ path, defaultComponent: DefaultComponent, ...props }: { path: string | Buffer, defaultComponent: () => ReactNode } & Partial<MinitelObjectAttributes>) {
+export function SharpImg({ path, defaultComponent: DefaultComponent, ...props }: { path: string | Buffer, defaultComponent: () => ReactNode } & Partial<MinitelObjectAttributes>) {
   const [result, setResult] = useState<ColorTriplet[][] | null>(null);
   const minitel = useContext(minitelContext);
 
-  function resize([height, width]: [number, number]) {
+  function resize([height, width]: [number, number], prev: [number, number] | null) {
     (async function () {
       const intermediaryStep1 = await sharpHandler(sharp(path).resize(width, height));
       setResult(intermediaryStep1);
     })();
+    props.onResize?.([height, width], prev);
   }
 
   return result
-    ? <mt-disp onResize={resize} grid={toRichCharGrid(result, minitel.colors as ColorTriplet[])} />
-    : <mt-cont onResize={resize}><DefaultComponent /></mt-cont>;
+    ? <mt-disp {...props} onResize={resize} grid={toRichCharGrid(result, minitel.colors as ColorTriplet[])} />
+    : <mt-cont {...props} onResize={resize}><DefaultComponent /></mt-cont>;
 }
 
 export async function sharpHandler(sharpInstance: Sharp): Promise<ColorTriplet[][]> {
