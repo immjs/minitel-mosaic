@@ -4,8 +4,9 @@ import { ReactNode, useContext, useState } from "react";
 import sharp from "sharp";
 import { toRichCharGrid } from "../utils/to_richchargrid.js";
 import { minitelContext } from "minitel-react";
+import { MinitelObjectAttributes } from "minitel-standalone/dist/types.js";
 
-export async function SharpImg({ path, defaultComponent: DefaultComponent }: { path: string | Buffer, defaultComponent: () => ReactNode }) {
+export async function SharpImg({ path, defaultComponent: DefaultComponent, ...props }: { path: string | Buffer, defaultComponent: () => ReactNode } & Partial<MinitelObjectAttributes>) {
   const [result, setResult] = useState<ColorTriplet[][] | null>(null);
   const minitel = useContext(minitelContext);
 

@@ -14,6 +14,7 @@ import { minitelContext } from "minitel-react";
 import { useContext } from "react";
 import { toRichCharGrid } from "../utils/to_richchargrid.js";
 import { ColorTriplet } from "../types.js";
+import { MinitelObjectAttributes } from "minitel-standalone/dist/types.js";
 
 const imgData: ColorTriplet[][] = [
   [[255, 255, 255], [0  , 0  , 0  ], [0  , 0  , 0  ], [0  , 0  , 0  ], [0  , 0  , 0  ], [255, 255, 255], [0  , 0  , 0  ], [0  , 0  , 0  ], [0  , 0  , 0  ], [255, 255, 255], [0  , 0  , 0  ], [0  , 0  , 0  ], [255, 255, 255], [255, 255, 255], [0  , 0  , 0  ], [0  , 0  , 0  ], [255, 255, 255], [0  , 0  , 0  ], [255, 255, 255], [0  , 0  , 0  ], [0  , 0  , 0  ], [255, 255, 255], [0  , 0  , 0  ], [0  , 0  , 0  ], [255, 255, 255], [255, 255, 255]],
@@ -24,7 +25,7 @@ const imgData: ColorTriplet[][] = [
   [[255, 255, 255], [255, 255, 255], [255, 255, 255], [0  , 0  , 0  ], [0  , 0  , 0  ], [255, 255, 255], [0  , 0  , 0  ], [0  , 0  , 0  ], [255, 255, 255], [0  , 0  , 0  ], [255, 255, 255], [0  , 0  , 0  ], [255, 255, 255], [255, 255, 255], [0  , 0  , 0  ], [0  , 0  , 0  ], [255, 255, 255], [0  , 0  , 0  ], [255, 255, 255], [0  , 0  , 0  ], [0  , 0  , 0  ], [255, 255, 255], [0  , 0  , 0  ], [0  , 0  , 0  ], [255, 255, 255], [255, 255, 255]],
 ];
 
-export function DefaultImg({ ...props }) {
+export function DefaultImg({ ...props }: Partial<MinitelObjectAttributes>) {
   const minitel = useContext(minitelContext);
 
   const grid = toRichCharGrid(imgData, minitel.colors as ColorTriplet[]);

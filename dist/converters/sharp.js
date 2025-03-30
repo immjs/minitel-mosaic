@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import sharp from "sharp";
 import { toRichCharGrid } from "../utils/to_richchargrid.js";
 import { minitelContext } from "minitel-react";
-export async function SharpImg({ path, defaultComponent: DefaultComponent }) {
+export async function SharpImg({ path, defaultComponent: DefaultComponent, ...props }) {
     const [result, setResult] = useState(null);
     const minitel = useContext(minitelContext);
     function resize([height, width]) {

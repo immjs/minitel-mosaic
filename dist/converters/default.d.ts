@@ -1,3 +1,2 @@
-export declare function DefaultImg({ ...props }: {
-    [x: string]: any;
-}): import("react/jsx-runtime").JSX.Element;
+import { MinitelObjectAttributes } from "minitel-standalone/dist/types.js";
+export declare function DefaultImg({ ...props }: Partial<MinitelObjectAttributes>): import("react/jsx-runtime").JSX.Element;

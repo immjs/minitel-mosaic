@@ -2,8 +2,9 @@
 import type { Sharp } from "sharp";
 import { ColorTriplet } from "../types.js";
 import { ReactNode } from "react";
-export declare function SharpImg({ path, defaultComponent: DefaultComponent }: {
+import { MinitelObjectAttributes } from "minitel-standalone/dist/types.js";
+export declare function SharpImg({ path, defaultComponent: DefaultComponent, ...props }: {
     path: string | Buffer;
     defaultComponent: () => ReactNode;
-}): Promise<import("react/jsx-runtime").JSX.Element>;
+} & Partial<MinitelObjectAttributes>): Promise<import("react/jsx-runtime").JSX.Element>;
 export declare function sharpHandler(sharpInstance: Sharp): Promise<ColorTriplet[][]>;
